@@ -4,5 +4,8 @@
   "description": "A prototype of the Operation Hillfort.",
   "devDependencies": {
     "browser-sync": "^2.26.13"
+  },
+  "scripts": {
+    "start": "browser-sync start --server src --files src"
   }
 }
