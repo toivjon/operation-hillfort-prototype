@@ -9,6 +9,6 @@
   },
   "scripts": {
     "start": "browser-sync start --server src --files src",
-    "lint": "eslint --ext .js src"
+    "lint": "eslint src"
   }
 }
