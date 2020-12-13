@@ -4,9 +4,11 @@
   "description": "A prototype of the Operation Hillfort.",
   "private": true,
   "devDependencies": {
-    "browser-sync": "^2.26.13"
+    "browser-sync": "^2.26.13",
+    "eslint": "^7.15.0"
   },
   "scripts": {
-    "start": "browser-sync start --server src --files src"
+    "start": "browser-sync start --server src --files src",
+    "lint": "eslint --ext .js src"
   }
 }
