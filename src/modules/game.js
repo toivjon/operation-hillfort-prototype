@@ -1,7 +1,9 @@
+import Renderer from './renderer.js'
+
 export default class Game {
 
   constructor() {
-    // TODO [sync] initialize subsystems
+    this.Renderer = new Renderer();
   }
 
   start() {
