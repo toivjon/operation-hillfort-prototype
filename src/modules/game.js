@@ -3,7 +3,7 @@ import Renderer from './renderer.js'
 export default class Game {
 
   constructor() {
-    this.Renderer = new Renderer();
+    this.renderer = new Renderer();
   }
 
   start() {
