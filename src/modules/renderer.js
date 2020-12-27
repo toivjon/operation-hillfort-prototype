@@ -12,6 +12,13 @@ export default class Renderer {
     if (!this.gl) {
       throw "Failed to acquire a WebGL 2 context for the HTML canvas.";
     }
+
+    // specify WebGL base configuration.
+    this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
+  }
+
+  render() {
+    this.gl.clear(this.gl.COLOR_BUFFER_BIT);
   }
 
 }
