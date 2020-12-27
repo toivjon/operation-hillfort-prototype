@@ -10,6 +10,14 @@ export default class Game {
     // TODO  [sync] load loading scene
     // TODO  [sync] show loading scene
     // TODO [async] load main menu items
-    // TODO  [sync] start main loop
+    const game = this;
+    function tick() {
+      // TODO calculate delta time and store current tick time
+      // TODO update scene only when having reasonable delta
+      // TODO draw scene only when having reasonable delta
+      game.renderer.render();
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
   }
 }
