@@ -18,7 +18,7 @@ export default class EventQueue {
    * @param {*} callback The function to be called when an event is dispatched.
    */
   addListener(eventType, callback) {
-    if(!this.listeners.has(eventType)) {
+    if (!this.listeners.has(eventType)) {
       this.listeners.set(eventType, [callback]);
     } else {
       this.listeners.get(eventType).push(callback);
@@ -34,7 +34,7 @@ export default class EventQueue {
    * @param {*} callback The function that was registered with addListener.
    */
   removeListener(eventType, callback) {
-    if(this.listeners.has(eventType)) {
+    if (this.listeners.has(eventType)) {
       let newListeners = this.listeners.get(eventType);
       newListeners = newListeners.filter(x => x !== callback);
       this.listeners.set(eventType, newListeners);
@@ -94,7 +94,7 @@ export default class EventQueue {
    * @param {*} event The event to be dispatched.
    */
   dispatch(event) {
-    if(this.listeners.has(event.type)) {
+    if (this.listeners.has(event.type)) {
       this.listeners.get(event.type).forEach(listener => listener(event));
     }
   }
