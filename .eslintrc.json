@@ -7,5 +7,10 @@
   "parserOptions": {
     "sourceType": "module",
     "ecmaVersion": 11
+  },
+  "rules": {
+    "space-before-blocks": "error",
+    "space-before-function-paren": ["error", "never"],
+    "keyword-spacing": "error"
   }
 }
