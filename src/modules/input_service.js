@@ -26,7 +26,7 @@ export default class InputService {
   onKeyDown(event) {
     if (!this.keyDowns[event.keyCode]) {
       this.game.eventQueue.enqueue({
-        type:"keyDown",
+        type:    "keyDown",
         keyCode: event.keyCode
       });
       this.keyDowns[event.keyCode] = true;
@@ -43,7 +43,7 @@ export default class InputService {
   onKeyUp(event) {
     if (this.keyDowns[event.keyCode]) {
       this.game.eventQueue.enqueue({
-        type:"keyUp",
+        type:    "keyUp",
         keyCode: event.keyCode
       });
       this.keyDowns[event.keyCode] = false;
@@ -60,10 +60,10 @@ export default class InputService {
   onMouseDown(event) {
     if (!this.mouseDowns[event.button]) {
       this.game.eventQueue.enqueue({
-        type:"mouseDown",
+        type:   "mouseDown",
         button: event.button,
-        x: event.clientX,
-        y: event.clientY
+        x:      event.clientX,
+        y:      event.clientY
       });
       this.mouseDowns[event.button] = true;
     }
@@ -79,10 +79,10 @@ export default class InputService {
   onMouseUp(event) {
     if (this.mouseDowns[event.button]) {
       this.game.eventQueue.enqueue({
-        type:"mouseUp",
+        type:   "mouseUp",
         button: event.button,
-        x: event.clientX,
-        y: event.clientY
+        x:      event.clientX,
+        y:      event.clientY
       });
       this.mouseDowns[event.button] = false;
     }
@@ -96,9 +96,9 @@ export default class InputService {
    */
   onMouseMove(event) {
     this.game.eventQueue.enqueue({
-      type:"mouseMove",
-      x: event.clientX,
-      y: event.clientY,
+      type:      "mouseMove",
+      x:         event.clientX,
+      y:         event.clientY,
       movementX: event.movementX,
       movementY: event.movementY
     });
