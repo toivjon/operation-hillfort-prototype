@@ -1,5 +1,10 @@
 export default class InputService {
 
+  /**
+   * Build a new input service for capturing user input.
+   * @contructor
+   * @param {*} game A reference to the game instance.
+   */
   constructor(game) {
     this.game = game;
     this.keyDowns = [];
