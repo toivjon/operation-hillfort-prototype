@@ -71,8 +71,6 @@ export default class TreeNode {
 
   /**
    * Check whether the node has the following child.
-   *
-   * Note that this funtion DOES NOT perform checks for graph-cycles!
    * @param {*} child The child to query from the children list.
    */
   hasChild(child) {
