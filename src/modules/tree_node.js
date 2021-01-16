@@ -19,7 +19,7 @@ export default class TreeNode {
    */
   setParent(parent) {
     if (this.parent == parent) {
-      return
+      return;
     } else if (this.parent != null) {
       this.parent.removeChild(this);
     }
