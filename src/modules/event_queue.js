@@ -48,7 +48,7 @@ export default class EventQueue {
    */
   hasListener(eventType, callback) {
     return this.listeners.has(eventType)
-        && this.listeners.get(eventType).indexOf(callback) !== -1
+        && this.listeners.get(eventType).indexOf(callback) !== -1;
   }
 
   /**
