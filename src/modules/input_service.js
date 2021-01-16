@@ -6,9 +6,9 @@ export default class InputService {
    * @param {*} game A reference to the game instance.
    */
   constructor(game) {
-    this.game = game;
-    this.keyDowns = [];
-    this.mouseDowns = [];
+    this._game = game;
+    this._keyDowns = [];
+    this._mouseDowns = [];
     window.addEventListener("keydown", this.onKeyDown.bind(this));
     window.addEventListener("keyup", this.onKeyUp.bind(this));
     window.addEventListener("mousedown", this.onMouseDown.bind(this));
@@ -24,12 +24,12 @@ export default class InputService {
    * @param {*} event The original keyboard event from the DOM.
    */
   onKeyDown(event) {
-    if (!this.keyDowns[event.keyCode]) {
-      this.game.eventQueue.enqueue({
+    if (!this._keyDowns[event.keyCode]) {
+      this._game.eventQueue.enqueue({
         type:    "keyDown",
         keyCode: event.keyCode
       });
-      this.keyDowns[event.keyCode] = true;
+      this._keyDowns[event.keyCode] = true;
     }
   }
 
@@ -41,12 +41,12 @@ export default class InputService {
    * @param {*} event The original keyboard event from the DOM.
    */
   onKeyUp(event) {
-    if (this.keyDowns[event.keyCode]) {
-      this.game.eventQueue.enqueue({
+    if (this._keyDowns[event.keyCode]) {
+      this._game.eventQueue.enqueue({
         type:    "keyUp",
         keyCode: event.keyCode
       });
-      this.keyDowns[event.keyCode] = false;
+      this._keyDowns[event.keyCode] = false;
     }
   }
 
@@ -58,14 +58,14 @@ export default class InputService {
    * @param {*} event The original mouse event from the DOM.
    */
   onMouseDown(event) {
-    if (!this.mouseDowns[event.button]) {
-      this.game.eventQueue.enqueue({
+    if (!this._mouseDowns[event.button]) {
+      this._game.eventQueue.enqueue({
         type:   "mouseDown",
         button: event.button,
         x:      event.clientX,
         y:      event.clientY
       });
-      this.mouseDowns[event.button] = true;
+      this._mouseDowns[event.button] = true;
     }
   }
 
@@ -77,14 +77,14 @@ export default class InputService {
    * @param {*} event The original mouse event from the DOM.
    */
   onMouseUp(event) {
-    if (this.mouseDowns[event.button]) {
-      this.game.eventQueue.enqueue({
+    if (this._mouseDowns[event.button]) {
+      this._game.eventQueue.enqueue({
         type:   "mouseUp",
         button: event.button,
         x:      event.clientX,
         y:      event.clientY
       });
-      this.mouseDowns[event.button] = false;
+      this._mouseDowns[event.button] = false;
     }
   }
 
@@ -95,7 +95,7 @@ export default class InputService {
    * @param {*} event The original mouse event from the DOM.
    */
   onMouseMove(event) {
-    this.game.eventQueue.enqueue({
+    this._game.eventQueue.enqueue({
       type:      "mouseMove",
       x:         event.clientX,
       y:         event.clientY,

@@ -5,8 +5,8 @@ export default class EventQueue {
    * @constructor
    */
   constructor() {
-    this.events = [];
-    this.listeners = new Map();
+    this._events = [];
+    this._listeners = new Map();
   }
 
   /**
@@ -18,10 +18,10 @@ export default class EventQueue {
    * @param {*} callback The function to be called when an event is dispatched.
    */
   addListener(eventType, callback) {
-    if (!this.listeners.has(eventType)) {
-      this.listeners.set(eventType, [callback]);
+    if (!this._listeners.has(eventType)) {
+      this._listeners.set(eventType, [callback]);
     } else {
-      this.listeners.get(eventType).push(callback);
+      this._listeners.get(eventType).push(callback);
     }
   }
 
@@ -34,10 +34,10 @@ export default class EventQueue {
    * @param {*} callback The function that was registered with addListener.
    */
   removeListener(eventType, callback) {
-    if (this.listeners.has(eventType)) {
-      let newListeners = this.listeners.get(eventType);
+    if (this._listeners.has(eventType)) {
+      let newListeners = this._listeners.get(eventType);
       newListeners = newListeners.filter(x => x !== callback);
-      this.listeners.set(eventType, newListeners);
+      this._listeners.set(eventType, newListeners);
     }
   }
 
@@ -47,8 +47,8 @@ export default class EventQueue {
    * @param {*} callback The function to check.
    */
   hasListener(eventType, callback) {
-    return this.listeners.has(eventType)
-        && this.listeners.get(eventType).indexOf(callback) !== -1;
+    return this._listeners.has(eventType)
+        && this._listeners.get(eventType).indexOf(callback) !== -1;
   }
 
   /**
@@ -65,7 +65,7 @@ export default class EventQueue {
    * @param {*} event The event to be queued.
    */
   enqueue(event) {
-    this.events.push(event);
+    this._events.push(event);
   }
 
   /**
@@ -78,8 +78,8 @@ export default class EventQueue {
    * @param {*} time The time used to check whether to distribute timed events.
    */
   dispatchAll(time) {
-    let events = this.events.filter(x => !("time" in x) || x.time <= time);
-    this.events = this.events.filter(x => x.time > time);
+    let events = this._events.filter(x => !("time" in x) || x.time <= time);
+    this._events = this._events.filter(x => x.time > time);
     events.sort((x, y) => x.priority - y.priority);
     events.forEach(event => this.dispatch(event));
   }
@@ -94,8 +94,8 @@ export default class EventQueue {
    * @param {*} event The event to be dispatched.
    */
   dispatch(event) {
-    if (this.listeners.has(event.type)) {
-      this.listeners.get(event.type).forEach(listener => listener(event));
+    if (this._listeners.has(event.type)) {
+      this._listeners.get(event.type).forEach(listener => listener(event));
     }
   }
 

@@ -5,8 +5,8 @@ export default class TreeNode {
    * @constructor
    */
   constructor() {
-    this.parent = null;
-    this.children = [];
+    this._parent = null;
+    this._children = [];
   }
 
   /**
@@ -18,14 +18,14 @@ export default class TreeNode {
    * @param {*} parent The parent for the node.
    */
   setParent(parent) {
-    if (this.parent == parent) {
+    if (this._parent == parent) {
       return;
-    } else if (this.parent != null) {
-      this.parent.removeChild(this);
+    } else if (this._parent != null) {
+      this._parent.removeChild(this);
     }
-    this.parent = parent;
-    if (this.parent != null) {
-      this.parent.addChild(this);
+    this._parent = parent;
+    if (this._parent != null) {
+      this._parent.addChild(this);
     }
   }
 
@@ -36,7 +36,7 @@ export default class TreeNode {
    * @returns {*} The parent of the node.
    */
   getParent() {
-    return this.parent;
+    return this._parent;
   }
 
   /**
@@ -48,7 +48,7 @@ export default class TreeNode {
    */
   addChild(child) {
     if (!this.hasChild(child)) {
-      this.children.push(child);
+      this._children.push(child);
       child.setParent(this);
     }
   }
@@ -62,8 +62,8 @@ export default class TreeNode {
    */
   removeChild(child) {
     if (this.hasChild(child)) {
-      this.children = this.children.filter(x => x != child);
-      if (child.parent == this) {
+      this._children = this._children.filter(x => x != child);
+      if (child.getParent() == this) {
         child.setParent(null);
       }
     }
@@ -74,7 +74,7 @@ export default class TreeNode {
    * @param {*} child The child to query from the children list.
    */
   hasChild(child) {
-    return this.children.includes(child);
+    return this._children.includes(child);
   }
 
   /**
@@ -84,7 +84,7 @@ export default class TreeNode {
    * @returns {*} The array of children.
    */
   getChildren() {
-    return this.children;
+    return this._children;
   }
 
 }
