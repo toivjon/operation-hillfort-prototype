@@ -14,6 +14,7 @@
     "keyword-spacing": "error",
     "max-len": "error",
     "indent": ["error", 2],
-    "key-spacing": ["error", { "mode": "minimum", "align": "value" }]
+    "key-spacing": ["error", { "mode": "minimum", "align": "value" }],
+    "semi": ["error", "always"]
   }
 }
