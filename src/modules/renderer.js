@@ -18,7 +18,7 @@ export default class Renderer {
   }
 
   render() {
-    this._gl.clear(this.gl.COLOR_BUFFER_BIT);
+    this._gl.clear(this._gl.COLOR_BUFFER_BIT);
   }
 
 }
